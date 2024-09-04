@@ -10,6 +10,38 @@
     <meta name="desciption" content="Find the latest events organized by the volunteers of GLUG PACE">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+     .search-form {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style for the search bar */
+#search-bar {
+    width: 800px; 
+    padding: 10px;
+    font-size: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-form button {
+    width:auto;
+    padding: 6px 6px; 
+    font-size: 14px; 
+    border: none;
+    border-radius:0%;
+    cursor: pointer;
+    margin-left:1px; 
+}
+
+
+#search-bar::placeholder {
+    font-size: 16px; 
+}
+  
+    </style>
 </head>
 
 <body>
@@ -17,25 +49,30 @@
     <header>
         <nav class="container navContainer">
             <div class="menuIcon" id="menuIcon" onclick="toggleNavBar()">
-              <i class="fa fa-bars"></i>
+                <i class="fa fa-bars"></i>
             </div>
             <a href="/" id="logo">GLUG PACE</a>
             <ul id="navbar-links" class="navbar-links">
                 <li class="nav-link "><a href="../index.html">Home</a></li>
-    
-              <li class="nav-link active"><a href="/events/">Events</a></li>
-              <li class="nav-link"><a href="/blog/">Blog</a></li>
-              <li class="nav-link"><a href="/team/">Team</a></li>
-              <li class="nav-link"><a href="/free-softwares/">Open-Source softwares</a></li>
-              <li class="nav-link"><a href="../coc.html">CoC</a></li>
-              <!-- <li class='nav-link'><a href='/hackathon'>Hackathon</a></li> -->
-    
+                <li class="nav-link active"><a href="/events/">Events</a></li>
+                <li class="nav-link"><a href="/blog/">Blog</a></li>
+                <li class="nav-link"><a href="/team/">Team</a></li>
+                <li class="nav-link"><a href="/free-softwares/">Open-Source softwares</a></li>
+                <li class="nav-link"><a href="../coc.html">CoC</a></li>
             </ul>
-          </nav>
+            
+        </nav>
     </header>
 
+    
     <!-- Event Section -->
     <div class="padding container">
+        <form class="search-form">
+        <input type="text" placeholder="Search for events..." name="search" id="search-bar">
+        <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+    </form>
+    
+
         <div class="event-container">
 
 
@@ -437,6 +474,27 @@
             </div>
         </div>
     </div>
+    <script>
+
+
+// JavaScript
+document.getElementById('search-bar').addEventListener('input', function() {
+    let query = this.value.toLowerCase();
+    let events = document.querySelectorAll('.event-card');
+    
+    events.forEach(function(event) {
+        let title = event.querySelector('.event-title a').textContent.toLowerCase();
+        if (title.includes(query)) {
+            event.style.display = '';
+        } else {
+            event.style.display = 'none';
+        }
+    });
+});
+
+
+        </script>
+
 
     <!-- Footer -->
     <footer>
